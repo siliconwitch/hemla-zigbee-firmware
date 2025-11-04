@@ -30,8 +30,7 @@
  MEMORY
  {
    FLASH      (rx)  : ORIGIN = 0x4000, LENGTH = 0xfa000
-   RAM        (rwx) : ORIGIN = 0x20000004, LENGTH = 0x17ffc
-   BOOTLOADER_RESET_REGION (rwx) : ORIGIN = 0x20000000, LENGTH = 0x4
+   RAM        (rwx) : ORIGIN = 0x20000000, LENGTH = 0x18000
  }
 
 ENTRY(Reset_Handler)
@@ -47,14 +46,8 @@ SECTIONS
 
     __Vectors_End = .;
     __Vectors_Size = __Vectors_End - __Vectors;
+    __lma_ramfuncs_start__ = .;
   } > FLASH
-  .bootloader_reset_section (NOLOAD):
-  {
-    __ResetReasonStart__ = .;
-    . = . + 4;
-    . = ALIGN(4);
-    __ResetReasonEnd__ = .;
-  } > BOOTLOADER_RESET_REGION
 
   .stack (NOLOAD):
   {
@@ -64,6 +57,12 @@ SECTIONS
     . = ALIGN(4);
     __StackTop = .;
     PROVIDE(__stack = __StackTop);
+  } > RAM
+
+
+  .noinit (NOLOAD):
+  {
+    *(.noinit*);
   } > RAM
 
   .bss :
@@ -76,14 +75,7 @@ SECTIONS
     __bss_end__ = .;
   } > RAM
 
-
-  .noinit (NOLOAD) : ALIGN(4)
-  {
-    *(.noinit*);
-  } > RAM
-
-
-  text_application_ram : ALIGN(4)
+  text_application_ram :
   {
     . = ALIGN(4);
     __vma_ramfuncs_start__ = .;
@@ -96,11 +88,10 @@ SECTIONS
     __text_application_ram_end__ = .;
   } > RAM AT > FLASH
 
-  __lma_ramfuncs_start__ = LOADADDR(text_application_ram);
-  __lma_ramfuncs_end__ = LOADADDR(text_application_ram) + SIZEOF(text_application_ram);
-
-  .rodata (READONLY):
+  .rodata :
   {
+    __lma_ramfuncs_end__ = .;
+    __rodata_start__ = .;
     __rodata_end__ = .;
   } > FLASH
 
@@ -145,7 +136,7 @@ SECTIONS
   } > FLASH
   __exidx_end = .;
 
-  .copy.table (READONLY):
+  .copy.table :
   {
     . = ALIGN(4);
     __copy_table_start__ = .;
@@ -164,7 +155,7 @@ SECTIONS
     __copy_table_end__ = .;
   } > FLASH
 
-  .zero.table (READONLY):
+  .zero.table :
   {
     . = ALIGN(4);
     __zero_table_start__ = .;
@@ -213,24 +204,19 @@ SECTIONS
     __data_end__ = .;
 
   } > RAM AT > FLASH
-
-
-/* Calculate heap size based on RAM limits. */
-heap_limit = ORIGIN(RAM) + LENGTH(RAM);  /* End of RAM */
-heap_size = heap_limit - __HeapBase;
   .memory_manager_heap (NOLOAD):
   {
     . = ALIGN(8);
     __HeapBase = .;
-    . += heap_size;
     __end__ = .;
+    end = __end__;
     _end = __end__;
     KEEP(*(.memory_manager_heap*))
     __HeapLimit = ORIGIN(RAM) + LENGTH(RAM);
   } > RAM
 
   __heap_size = __HeapLimit - __HeapBase;
-  __ram_end__ = 0x20000004 + 0x17ffc;
+  __ram_end__ = 0x20000000 + 0x18000;
   __main_flash_end__ = 0x4000 + 0xfa000;
 
    /* This is where we handle flash storage blocks. We use dummy sections for finding the configured

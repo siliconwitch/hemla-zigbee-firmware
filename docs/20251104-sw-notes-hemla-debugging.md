@@ -20,3 +20,7 @@
 - Rebuilt with flow control disabled. Didn't work
 
 - Rebuilt with exactly matched pins to initial version. Didn't work
+
+- Tried with all combinations of UART configuration. Didn't work. [EZSP appnote](https://www.silabs.com/documents/public/application-notes/an706-ezsp-uart-host-interfacing-guide.pdf) suggests that flow control is required.
+
+- Rolled back SDK to v2024.12.1. The included example project didn't build. Required some edits to `main.c`. Once built, the app still didn't seem to work.

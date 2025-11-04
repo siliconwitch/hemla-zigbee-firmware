@@ -35,10 +35,6 @@
 
 // <h>SWO Configuration
 
-// <q SL_DEBUG_SWO_ENABLE> Enable Debug SWO
-// <i> Default: 1
-#define SL_DEBUG_SWO_ENABLE                     1
-
 // <o SL_DEBUG_SWO_FREQ> SWO Frequency
 // <i> Must be 875 kHz for communication with Silicon Labs debuggers
 // <i> Default: 875000
@@ -99,7 +95,7 @@
 
 // GPIO SWV on PA03
 #ifndef SL_DEBUG_SWV_PORT                       
-#define SL_DEBUG_SWV_PORT                        SL_GPIO_PORT_A
+#define SL_DEBUG_SWV_PORT                        gpioPortA
 #endif
 #ifndef SL_DEBUG_SWV_PIN                        
 #define SL_DEBUG_SWV_PIN                         3
