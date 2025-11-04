@@ -31,7 +31,7 @@
 #ifndef SL_FEM_UTIL_CONFIG_H
 #define SL_FEM_UTIL_CONFIG_H
 
-#include "sl_gpio.h"
+#include "em_gpio.h"
 
 // <<< Use Configuration Wizard in Context Menu >>>
 // <h> FEM Configuration

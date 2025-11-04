@@ -58,7 +58,7 @@
 // $[GPIO]
 // GPIO SWV on PA03
 #ifndef GPIO_SWV_PORT                           
-#define GPIO_SWV_PORT                            SL_GPIO_PORT_A
+#define GPIO_SWV_PORT                            gpioPortA
 #endif
 #ifndef GPIO_SWV_PIN                            
 #define GPIO_SWV_PIN                             3
@@ -79,25 +79,25 @@
 // [TIMER3]$
 
 // $[USART0]
-// USART0 CTS on PD02
+// USART0 CTS on PC01
 #ifndef USART0_CTS_PORT                         
-#define USART0_CTS_PORT                          SL_GPIO_PORT_D
+#define USART0_CTS_PORT                          gpioPortC
 #endif
 #ifndef USART0_CTS_PIN                          
-#define USART0_CTS_PIN                           2
+#define USART0_CTS_PIN                           1
 #endif
 
-// USART0 RTS on PC01
+// USART0 RTS on PD02
 #ifndef USART0_RTS_PORT                         
-#define USART0_RTS_PORT                          SL_GPIO_PORT_C
+#define USART0_RTS_PORT                          gpioPortD
 #endif
 #ifndef USART0_RTS_PIN                          
-#define USART0_RTS_PIN                           1
+#define USART0_RTS_PIN                           2
 #endif
 
 // USART0 RX on PA06
 #ifndef USART0_RX_PORT                          
-#define USART0_RX_PORT                           SL_GPIO_PORT_A
+#define USART0_RX_PORT                           gpioPortA
 #endif
 #ifndef USART0_RX_PIN                           
 #define USART0_RX_PIN                            6
@@ -105,7 +105,7 @@
 
 // USART0 TX on PA05
 #ifndef USART0_TX_PORT                          
-#define USART0_TX_PORT                           SL_GPIO_PORT_A
+#define USART0_TX_PORT                           gpioPortA
 #endif
 #ifndef USART0_TX_PIN                           
 #define USART0_TX_PIN                            5
@@ -138,22 +138,6 @@
 // [I2C0]$
 
 // $[PTI]
-// PTI DFRAME on PC05
-#ifndef PTI_DFRAME_PORT                         
-#define PTI_DFRAME_PORT                          SL_GPIO_PORT_C
-#endif
-#ifndef PTI_DFRAME_PIN                          
-#define PTI_DFRAME_PIN                           5
-#endif
-
-// PTI DOUT on PC04
-#ifndef PTI_DOUT_PORT                           
-#define PTI_DOUT_PORT                            SL_GPIO_PORT_C
-#endif
-#ifndef PTI_DOUT_PIN                            
-#define PTI_DOUT_PIN                             4
-#endif
-
 // [PTI]$
 
 // $[MODEM]
@@ -161,7 +145,7 @@
 
 // $[CUSTOM_PIN_NAME]
 #ifndef _PORT                                   
-#define _PORT                                    SL_GPIO_PORT_A
+#define _PORT                                    gpioPortA
 #endif
 #ifndef _PIN                                    
 #define _PIN                                     0

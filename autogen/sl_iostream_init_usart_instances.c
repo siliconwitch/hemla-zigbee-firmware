@@ -9,8 +9,6 @@
 #include "sl_iostream_uart.h"
 #include "sl_iostream_usart.h"
 
-#include "sl_cos.h"
-
 
 // Include instance config 
  #include "sl_iostream_usart_vcom_config.h"
@@ -36,11 +34,9 @@
                                   | SL_POWER_MANAGER_EVENT_TRANSITION_LEAVING_EM2  \
                                   | SL_POWER_MANAGER_EVENT_TRANSITION_ENTERING_EM3 \
                                   | SL_POWER_MANAGER_EVENT_TRANSITION_LEAVING_EM3  \
-                                  | SL_POWER_MANAGER_EVENT_TRANSITION_ENTERING_EM0 \
                                   | SL_POWER_MANAGER_EVENT_TRANSITION_LEAVING_EM0)
 #else 
-#define SLEEP_EM_EVENT_MASK      (SL_POWER_MANAGER_EVENT_TRANSITION_ENTERING_EM0   \
-                                  | SL_POWER_MANAGER_EVENT_TRANSITION_LEAVING_EM0)
+#define SLEEP_EM_EVENT_MASK      (SL_POWER_MANAGER_EVENT_TRANSITION_LEAVING_EM0)
 #endif // _SILICON_LABS_32B_SERIES_2
 static void events_handler(sl_power_manager_em_t from,
                            sl_power_manager_em_t to);
@@ -138,34 +134,6 @@ sl_status_t sl_iostream_usart_init_vcom(void)
   EFM_ASSERT(status == SL_STATUS_OK);
 
   
-  // Send VCOM config to WSTK
-  uint8_t flow_control = COS_CONFIG_FLOWCONTROL_NONE;
-  // Series 0 boards don't have HWFC.
-  #if !defined(_SILICON_LABS_32B_SERIES_0)
-  if (!uart_config_vcom.sw_flow_control) {
-    switch (SL_IOSTREAM_USART_VCOM_FLOW_CONTROL_TYPE) 
-    {
-      case uartFlowControlNone:
-        flow_control = COS_CONFIG_FLOWCONTROL_NONE;
-        break;
-      case usartHwFlowControlCts:
-        flow_control = COS_CONFIG_FLOWCONTROL_CTS;
-        break;
-      case usartHwFlowControlRts:
-        flow_control = COS_CONFIG_FLOWCONTROL_RTS;
-        break;
-      case usartHwFlowControlCtsAndRts:
-        flow_control = COS_CONFIG_FLOWCONTROL_CTS_RTS;
-        break;
-      default:
-        // Invalid flow control type  
-        EFM_ASSERT(0);
-        break;
-    }
-  }
-  #endif // _SILICON_LABS_32B_SERIES_0
-  sl_cos_config_vcom((uint32_t) SL_IOSTREAM_USART_VCOM_BAUDRATE, flow_control);
-  
 
   return status;
 }
@@ -236,14 +204,8 @@ static void events_handler(sl_power_manager_em_t from,
     
   }
   #endif // _SILICON_LABS_32B_SERIES_2
-  if (to == SL_POWER_MANAGER_EM0) {
-     
-    if (sl_iostream_uart_vcom_handle->stream.context != NULL) {
-      sl_iostream_uart_wakeup(sl_iostream_uart_vcom_handle);
-    }
-    
-  } else if (to < SL_POWER_MANAGER_EM2){
-    // Only prepare for sleep to EM1 or less, since USART doesn't run in EM2
+  if (to < SL_POWER_MANAGER_EM2){
+    // Only prepare for wakeup from EM1 or less, since USART doesn't run in EM2
      
     if (sl_iostream_uart_vcom_handle->stream.context != NULL) {
       sl_iostream_uart_prepare_for_sleep(sl_iostream_uart_vcom_handle);

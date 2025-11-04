@@ -2,7 +2,6 @@
 
 #include "em_chip.h"
 #include "sl_interrupt_manager.h"
-#include "sl_board_init.h"
 #include "sl_clock_manager_init.h"
 #include "sl_clock_manager.h"
 #include "SEGGER_RTT.h"
@@ -16,33 +15,26 @@
 #include "zigbee-secure-key-storage-upgrade.h"
 #include "btl_interface.h"
 #include "sl_fem_util.h"
-#include "sl_board_control.h"
 #include "sl_sleeptimer.h"
 #include "sl_debug_swo.h"
-#include "sl_gpio.h"
 #include "sl_iostream_debug.h"
 #include "sl_iostream_init_usart_instances.h"
 #include "sl_iostream_vuart.h"
 #include "hal.h"
 #include "sl_mbedtls.h"
-#include "psa/crypto.h"
-#include "sl_se_manager.h"
-#include "sl_iostream_init_instances.h"
 #include "nvm3_default.h"
-#include "sl_cos.h"
-#include "sl_iostream_handles.h"
+#include "psa/crypto.h"
+#include "sl_iostream_init_instances.h"
 #include "sl_power_manager.h"
 
 void sl_platform_init(void)
 {
   CHIP_Init();
   sl_interrupt_manager_init();
-  sl_board_preinit();
   sl_clock_manager_init();
   sl_clock_manager_runtime_init();
   SEGGER_RTT_Init();
   sl_memory_init();
-  sl_board_init();
   bootloader_init();
   halInit();
   nvm3_initDefault();
@@ -52,17 +44,13 @@ void sl_platform_init(void)
 void sl_driver_init(void)
 {
   sl_debug_swo_init();
-  sl_gpio_init();
-  sl_cos_send_config();
 }
 
 void sl_service_init(void)
 {
-  sl_board_configure_vcom();
   sl_sleeptimer_init();
   sl_mbedtls_init();
   psa_crypto_init();
-  sl_se_init();
   sl_iostream_init_instances();
 }
 
@@ -109,6 +97,5 @@ void sl_iostream_init_instances(void)
   sl_iostream_debug_init();
   sl_iostream_usart_init_instances();
   sl_iostream_vuart_init();
-  sl_iostream_set_console_instance();
 }
 

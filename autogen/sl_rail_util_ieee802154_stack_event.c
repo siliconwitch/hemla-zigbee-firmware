@@ -33,11 +33,8 @@
 #include "sl_status.h"
 #include "sl_rail_util_ieee802154_stack_event.h"
 #include "sl_assert.h"
-
-#include "sl_code_classification.h"
 #include "sl_rail_util_ieee802154_phy_select.h"
 
-SL_CODE_CLASSIFY(SL_CODE_COMPONENT_RAIL_UTIL_IEEE802154_STACK_EVENT, SL_CODE_CLASS_TIME_CRITICAL)
 sl_rail_util_ieee802154_stack_status_t sl_rail_util_ieee802154_on_event(
   sl_rail_util_ieee802154_stack_event_t stack_event,
   uint32_t supplement)

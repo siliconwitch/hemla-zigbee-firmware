@@ -30,8 +30,7 @@
  MEMORY
  {
    FLASH      (rx)  : ORIGIN = 0x4000, LENGTH = 0xfa000
-   RAM        (rwx) : ORIGIN = 0x20000004, LENGTH = 0x17ffc
-   BOOTLOADER_RESET_REGION (rwx) : ORIGIN = 0x20000000, LENGTH = 0x4
+   RAM        (rwx) : ORIGIN = 0x20000000, LENGTH = 0x18000
  }
 
 ENTRY(Reset_Handler)
@@ -49,13 +48,6 @@ SECTIONS
     __Vectors_Size = __Vectors_End - __Vectors;
     __lma_ramfuncs_start__ = .;
   } > FLASH
-  .bootloader_reset_section (NOLOAD):
-  {
-    __ResetReasonStart__ = .;
-    . = . + 4;
-    . = ALIGN(4);
-    __ResetReasonEnd__ = .;
-  } > BOOTLOADER_RESET_REGION
 
   .stack (NOLOAD):
   {
@@ -67,6 +59,12 @@ SECTIONS
     PROVIDE(__stack = __StackTop);
   } > RAM
 
+
+  .noinit (NOLOAD):
+  {
+    *(.noinit*);
+  } > RAM
+
   .bss :
   {
     . = ALIGN(4);
@@ -76,14 +74,6 @@ SECTIONS
     . = ALIGN(4);
     __bss_end__ = .;
   } > RAM
-
-
-  .noinit (NOLOAD):
-  {
-    *(.noinit*);
-    . = ALIGN(4);
-  } > RAM
-
 
   text_application_ram :
   {
@@ -214,16 +204,10 @@ SECTIONS
     __data_end__ = .;
 
   } > RAM AT > FLASH
-
-
-/* Calculate heap size based on RAM limits. */
-heap_limit = ORIGIN(RAM) + LENGTH(RAM);  /* End of RAM */
-heap_size = heap_limit - __HeapBase;
   .memory_manager_heap (NOLOAD):
   {
     . = ALIGN(8);
     __HeapBase = .;
-    . += heap_size;
     __end__ = .;
     end = __end__;
     _end = __end__;
@@ -232,7 +216,7 @@ heap_size = heap_limit - __HeapBase;
   } > RAM
 
   __heap_size = __HeapLimit - __HeapBase;
-  __ram_end__ = 0x20000004 + 0x17ffc;
+  __ram_end__ = 0x20000000 + 0x18000;
   __main_flash_end__ = 0x4000 + 0xfa000;
 
    /* This is where we handle flash storage blocks. We use dummy sections for finding the configured

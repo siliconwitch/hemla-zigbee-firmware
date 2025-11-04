@@ -488,10 +488,6 @@ void sli_zigbee_af_counter_rollover_callback(
       sl_zigbee_counter_type_t type)
 ;
 
-// mux_invalid_rx
-void sli_zigbee_af_mux_invalid_rx(uint8_t new_rx_channel, uint8_t old_rx_channel)
-;
-
 // Raw Transmit Complete
 void sli_zigbee_af_raw_transmit_complete(
       // message
@@ -826,6 +822,10 @@ void sli_zigbee_af_gpep_incoming_message_callback(
 void sli_zigbee_af_rtos_idle(
       // Return: Idle time duration
       uint32_t *idleTimeMs)
+;
+
+// Rtos Stack Wakeup Isr
+void sli_zigbee_common_wakeup_isr(void)
 ;
 
 // Radio Needs Calibrating
