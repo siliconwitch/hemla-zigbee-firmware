@@ -17,4 +17,6 @@
 
 - Tested the built binary on development gateway. Didn't work
 
-- Rebuilt with flow control disabled
+- Rebuilt with flow control disabled. Didn't work
+
+- Rebuilt with exactly matched pins to initial version. Didn't work
