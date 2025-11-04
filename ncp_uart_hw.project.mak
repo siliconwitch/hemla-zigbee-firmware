@@ -3,8 +3,8 @@
 # Makefile Version 19                                              #
 ####################################################################
 
-BASE_SDK_PATH = ${HOME}.silabs/slt/installs/conan/p/simpleb526998f4a4d/p
-BASE_PKG_PATH = ${HOME}.silabs/slt/installs
+BASE_SDK_PATH = ${HOME}/.silabs/slt/installs/conan/p/simpleb526998f4a4d/p
+BASE_PKG_PATH = ${HOME}/.silabs/slt/installs
 UNAME:=$(shell $(POSIX_TOOL_PATH)uname -s | $(POSIX_TOOL_PATH)sed -e 's/^\(CYGWIN\).*/\1/' | $(POSIX_TOOL_PATH)sed -e 's/^\(MINGW\).*/\1/')
 ifeq ($(UNAME),MINGW)
 # Translate "C:/super" into "/C/super" for MinGW make.
