@@ -3,7 +3,7 @@
  * @brief Clock Manager - Clock Tree configuration file.
  *******************************************************************************
  * # License
- * <b>Copyright 2025 Silicon Laboratories Inc. www.silabs.com</b>
+ * <b>Copyright 2024 Silicon Laboratories Inc. www.silabs.com</b>
  *******************************************************************************
  *
  * SPDX-License-Identifier: Zlib
@@ -103,13 +103,12 @@
 #endif
 
 // <o SL_CLOCK_MANAGER_PCLK_DIVIDER> PCLK branch divider
-//   <SL_CLOCK_MANAGER_PCLK_DIV_MIN=> MIN
 //   <CMU_SYSCLKCTRL_PCLKPRESC_DIV1=> DIV1
 //   <CMU_SYSCLKCTRL_PCLKPRESC_DIV2=> DIV2
 // <i> PCLK branch is derived from HCLK. This clock drives the APB bus interface.
-// <d> SL_CLOCK_MANAGER_PCLK_DIV_MIN
+// <d> CMU_SYSCLKCTRL_PCLKPRESC_DIV1
 #ifndef SL_CLOCK_MANAGER_PCLK_DIVIDER
-#define SL_CLOCK_MANAGER_PCLK_DIVIDER    SL_CLOCK_MANAGER_PCLK_DIV_MIN
+#define SL_CLOCK_MANAGER_PCLK_DIVIDER    CMU_SYSCLKCTRL_PCLKPRESC_DIV1
 #endif
 
 // </h>
@@ -177,7 +176,7 @@
 #define SL_CLOCK_MANAGER_EM4GRPACLK_SOURCE    SL_CLOCK_MANAGER_DEFAULT_LF_CLOCK_SOURCE
 #endif
 
-// <o SL_CLOCK_MANAGER_RTCCCLK_SOURCE> Clock Source Selection for RTCCCLK branch
+// <o SL_CLOCK_MANAGER_RTCCCLK_SOURCE> Clock Source Selection for EM23GRPACLK branch
 //   <SL_CLOCK_MANAGER_DEFAULT_LF_CLOCK_SOURCE=> DEFAULT_LF
 //   <CMU_RTCCCLKCTRL_CLKSEL_LFRCO=> LFRCO
 //   <CMU_RTCCCLKCTRL_CLKSEL_LFXO=> LFXO

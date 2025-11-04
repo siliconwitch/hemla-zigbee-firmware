@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<model:MDescriptors xmlns:model="http://www.silabs.com/ss/Studio.ecore">
+  <descriptors name="hemla-zigbee-firmware">
+    <properties key="projectCommon.sdkId" value="com.silabs.sdk.stack.sisdk:2024.12.1._-1946313063-535358418"/>
+    <properties key="universalConfig.relativeWorkspacePath" value="../hemla-zigbee-firmware.slcw"/>
+    <properties key="universalConfig.generationDirectory" value=""/>
+    <properties key="universalConfig.toolchainCompatibility" value="iar gcc"/>
+    <properties key="projectCommon.overwriteCopiedSources" value="false"/>
+    <properties key="projectCommon.boardIds" value="brd4001a:0.0.0.A01 brd4308d:0.0.0.A01"/>
+    <properties key="projectCommon.kitId" value=""/>
+    <properties key="projectCommon.partId" value="mcu.arm.efr32.mg21.mgm210pb22jia"/>
+    <properties key="projectCommon.toolchainId" value="com.silabs.ss.framework.project.core.noToolChain:0.0.0"/>
+    <properties key="universalConfig.projectTypeIds" value="com.silabs.framework.project.makefile"/>
+    <properties key="projectCommon.importModeId" value="COPY"/>
+    <properties key="universalConfig.compSelProjInstanceId" value="1762260238790"/>
+  </descriptors>
+</model:MDescriptors>

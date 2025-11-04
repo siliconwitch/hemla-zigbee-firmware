@@ -47,6 +47,7 @@ SECTIONS
 
     __Vectors_End = .;
     __Vectors_Size = __Vectors_End - __Vectors;
+    __lma_ramfuncs_start__ = .;
   } > FLASH
   .bootloader_reset_section (NOLOAD):
   {
@@ -77,13 +78,14 @@ SECTIONS
   } > RAM
 
 
-  .noinit (NOLOAD) : ALIGN(4)
+  .noinit (NOLOAD):
   {
     *(.noinit*);
+    . = ALIGN(4);
   } > RAM
 
 
-  text_application_ram : ALIGN(4)
+  text_application_ram :
   {
     . = ALIGN(4);
     __vma_ramfuncs_start__ = .;
@@ -96,11 +98,10 @@ SECTIONS
     __text_application_ram_end__ = .;
   } > RAM AT > FLASH
 
-  __lma_ramfuncs_start__ = LOADADDR(text_application_ram);
-  __lma_ramfuncs_end__ = LOADADDR(text_application_ram) + SIZEOF(text_application_ram);
-
-  .rodata (READONLY):
+  .rodata :
   {
+    __lma_ramfuncs_end__ = .;
+    __rodata_start__ = .;
     __rodata_end__ = .;
   } > FLASH
 
@@ -145,7 +146,7 @@ SECTIONS
   } > FLASH
   __exidx_end = .;
 
-  .copy.table (READONLY):
+  .copy.table :
   {
     . = ALIGN(4);
     __copy_table_start__ = .;
@@ -164,7 +165,7 @@ SECTIONS
     __copy_table_end__ = .;
   } > FLASH
 
-  .zero.table (READONLY):
+  .zero.table :
   {
     . = ALIGN(4);
     __zero_table_start__ = .;
@@ -224,6 +225,7 @@ heap_size = heap_limit - __HeapBase;
     __HeapBase = .;
     . += heap_size;
     __end__ = .;
+    end = __end__;
     _end = __end__;
     KEEP(*(.memory_manager_heap*))
     __HeapLimit = ORIGIN(RAM) + LENGTH(RAM);

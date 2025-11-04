@@ -28,9 +28,7 @@
  *
  ******************************************************************************/
 
-#include "sl_rail.h"
 #include "rail.h"
-#include "sl_rail_ieee802154.h"
 #include "rail_ieee802154.h"
 #include "sl_status.h"
 #include "sl_rail_util_ieee802154_stack_event.h"

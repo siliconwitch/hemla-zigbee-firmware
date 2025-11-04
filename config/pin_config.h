@@ -56,22 +56,6 @@
 // [PRS.SYNCH3]$
 
 // $[GPIO]
-// GPIO SWCLK on PA01
-#ifndef GPIO_SWCLK_PORT                         
-#define GPIO_SWCLK_PORT                          SL_GPIO_PORT_A
-#endif
-#ifndef GPIO_SWCLK_PIN                          
-#define GPIO_SWCLK_PIN                           1
-#endif
-
-// GPIO SWDIO on PA02
-#ifndef GPIO_SWDIO_PORT                         
-#define GPIO_SWDIO_PORT                          SL_GPIO_PORT_A
-#endif
-#ifndef GPIO_SWDIO_PIN                          
-#define GPIO_SWDIO_PIN                           2
-#endif
-
 // GPIO SWV on PA03
 #ifndef GPIO_SWV_PORT                           
 #define GPIO_SWV_PORT                            SL_GPIO_PORT_A
@@ -154,12 +138,20 @@
 // [I2C0]$
 
 // $[PTI]
-// PTI DOUT on PD00
+// PTI DFRAME on PC05
+#ifndef PTI_DFRAME_PORT                         
+#define PTI_DFRAME_PORT                          SL_GPIO_PORT_C
+#endif
+#ifndef PTI_DFRAME_PIN                          
+#define PTI_DFRAME_PIN                           5
+#endif
+
+// PTI DOUT on PC04
 #ifndef PTI_DOUT_PORT                           
-#define PTI_DOUT_PORT                            SL_GPIO_PORT_D
+#define PTI_DOUT_PORT                            SL_GPIO_PORT_C
 #endif
 #ifndef PTI_DOUT_PIN                            
-#define PTI_DOUT_PIN                             0
+#define PTI_DOUT_PIN                             4
 #endif
 
 // [PTI]$
