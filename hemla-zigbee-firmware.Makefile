@@ -18,7 +18,7 @@ ARM_GCC_DIR_WIN =
 ARM_GCC_DIR_OSX = /Users/raj/.silabs/slt/installs/conan/p/gcc-af360b79bab9e3/p/
 ARM_GCC_DIR_LINUX = 
 POST_BUILD_EXE_WIN = 
-POST_BUILD_EXE_OSX = /Applications/Simplicity Studio.app/Contents/Eclipse/developer/adapter_packs/commander/Commander.app/Contents/MacOS/commander
+POST_BUILD_EXE_OSX = /Applications/SimplicityStudio.app/Contents/Eclipse/developer/adapter_packs/commander/Commander.app/Contents/MacOS/commander
 POST_BUILD_EXE_LINUX = 
 
 # Pre-defined definitions in this file

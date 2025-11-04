@@ -2,6 +2,9 @@
 
 Forces the Zigbee module into bootloader mode by holding
 the bootloader pin and toggling reset.
+
+In case of a bad update where UART no longer responds, this
+script can recover the module from a soft-brick.
 """
 
 import gpiozero

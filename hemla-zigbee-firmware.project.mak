@@ -286,7 +286,8 @@ pre-build:
 	# No pre-build defined
 
 post-build: $(OUTPUT_DIR)/$(PROJECTNAME).out
-	# No post-build defined
+	@$(POSIX_TOOL_PATH)echo 'Exporting GBL file'
+	@$(POST_BUILD_EXE) gbl3 create $(OUTPUT_DIR)/$(PROJECTNAME).gbl --app $(OUTPUT_DIR)/$(PROJECTNAME).s37
 
 ####################################################################
 # SDK Build Rules                                                  #
