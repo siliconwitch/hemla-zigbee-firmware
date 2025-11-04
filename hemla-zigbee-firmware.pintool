@@ -9,8 +9,8 @@
     <property object="PORTIO" propertyId="portio.usart0.enable.rts" value="Enabled"/>
     <property object="PORTIO" propertyId="portio.usart0.enable.rx" value="Enabled"/>
     <property object="PORTIO" propertyId="portio.usart0.enable.tx" value="Enabled"/>
-    <property object="PORTIO" propertyId="portio.usart0.location.cts" value="33"/>
-    <property object="PORTIO" propertyId="portio.usart0.location.rts" value="50"/>
+    <property object="PORTIO" propertyId="portio.usart0.location.cts" value="50"/>
+    <property object="PORTIO" propertyId="portio.usart0.location.rts" value="33"/>
     <property object="PORTIO" propertyId="portio.usart0.location.rx" value="6"/>
     <property object="PORTIO" propertyId="portio.usart0.location.tx" value="5"/>
     <property object="PTI" propertyId="ABModule.selectedRequirement" value="pti%T%SL_RAIL_UTIL_PTI%T%sl_rail_util_pti_config.h"/>
