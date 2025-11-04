@@ -95,20 +95,20 @@
 // [TIMER3]$
 
 // $[USART0]
-// USART0 CTS on PC01
+// USART0 CTS on PD02
 #ifndef USART0_CTS_PORT                         
-#define USART0_CTS_PORT                          SL_GPIO_PORT_C
+#define USART0_CTS_PORT                          SL_GPIO_PORT_D
 #endif
 #ifndef USART0_CTS_PIN                          
-#define USART0_CTS_PIN                           1
+#define USART0_CTS_PIN                           2
 #endif
 
-// USART0 RTS on PD02
+// USART0 RTS on PC01
 #ifndef USART0_RTS_PORT                         
-#define USART0_RTS_PORT                          SL_GPIO_PORT_D
+#define USART0_RTS_PORT                          SL_GPIO_PORT_C
 #endif
 #ifndef USART0_RTS_PIN                          
-#define USART0_RTS_PIN                           2
+#define USART0_RTS_PIN                           1
 #endif
 
 // USART0 RX on PA06
