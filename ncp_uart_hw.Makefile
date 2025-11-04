@@ -15,10 +15,10 @@ all: debug
 # Values set by the initial generation
 PROJECTNAME = ncp_uart_hw
 ARM_GCC_DIR_WIN = 
-ARM_GCC_DIR_OSX = /Users/raj/.silabs/slt/installs/conan/p/gcc-af360b79bab9e3/p/
+ARM_GCC_DIR_OSX = ${HOME}.silabs/slt/installs/conan/p/gcc-af360b79bab9e3/p/
 ARM_GCC_DIR_LINUX = 
 POST_BUILD_EXE_WIN = 
-POST_BUILD_EXE_OSX = /Users/raj/.silabs/slt/installs/archive/Commander.app/Contents/MacOS/commander
+POST_BUILD_EXE_OSX = ${HOME}.silabs/slt/installs/archive/Commander.app/Contents/MacOS/commander
 POST_BUILD_EXE_LINUX = 
 
 # Pre-defined definitions in this file
