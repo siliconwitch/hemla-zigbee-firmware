@@ -2,10 +2,11 @@
 
 **Onsite at:** 09:15
 **Lunch:** 
-**End:** 
+**End:** 17:30
 
 **Participants:**
 - Raj
+- Benji
 
 ## Morning:
 
@@ -22,6 +23,8 @@
 - Rebuilt with exactly matched pins to initial version. Didn't work
 
 - Tried with all combinations of UART configuration. Didn't work. [EZSP appnote](https://www.silabs.com/documents/public/application-notes/an706-ezsp-uart-host-interfacing-guide.pdf) suggests that flow control is required.
+
+## Afternoon:
 
 - Rolled back to SDK v2024.12.1. The included example project didn't build. Required some edits to `main.c`. Once built, the app still didn't seem to work.
 
@@ -110,7 +113,6 @@
     | Parameter | Old | New |
     |-----------|-----|-----|
     | CONFIG_PACKET_BUFFER_COUNT | 255 | 8192 
-    | CONFIG_NEIGHBOR_TABLE_SIZE | 16 | 16 
     | CONFIG_APS_UNICAST_MESSAGE_COUNT | 32 | 10 
     | CONFIG_SOURCE_ROUTE_TABLE_SIZE | 200 | 7 
     | CONFIG_BROADCAST_TABLE_SIZE | 64 | 15 
@@ -130,3 +132,23 @@
     | CONFIG_CERTIFICATE_TABLE_SIZE | 0
     | CONFIG_RF4CE_PAIRING_TABLE_SIZE | 0
     | CONFIG_RF4CE_PENDING_OUTGOING_PACKET_TABLE_SIZE | 0
+
+## Closing thoughts:
+
+We've migrated the firmware from the very old SDK to the latest minor version. Going from v2024.6.1 (sep 2024) → v2024.6.3 (apr 2025). There are newer major versions (v2025) but these don't seem to work.
+
+As mentioned yesterday, I suspect the production firmware might actually on a much older SDK as the probe command shows the Ember library inside is v7.4.4.0. However, when I built with the original developer's instructions and recommended SDK version, I got this to be 8.0.1.0. Now with the latest SDK, we're on 8.0.3.0
+
+The change logs across these versions describe a lot of low level fixes so I think it's good to be updated anyway.
+
+We've also moved to Simplicity Studio 6, that allows for builds using make and VSCode rather than an old IDE. We can also freely add more logging and control all the setting around how the network is configured. Several of the defaults seem to have changed compared to the original version.
+
+We now have a proper codebase, with everything in git. This latest build was tested on the gateway that's on the shelf. zigbee2mqtt seems to be running fine with the new firmware installed. Motion sensor is responding as normal. 
+
+**Next steps/ideas:**
+
+1. Test a bigger network over a period of time and see if this issue returns
+
+1. Look into how to set up a sniffer so we can monitor if it does happen again. Unfortunately for the existing site this might be difficult if the network is encrypted.
+
+    > Axel found a solution to this [here](https://www.zigbee2mqtt.io/advanced/zigbee/04_sniff_zigbee_traffic.html#adding-the-network-key).
