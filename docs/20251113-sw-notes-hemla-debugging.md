@@ -1,7 +1,7 @@
 # Raj/Hemla - Notes from debugging
 
 **Morning:** 4 hours<br>
-**Afternoon:** <br>
+**Afternoon:** 1 hour<br>
 
 **Participants:**
 - Raj
@@ -23,4 +23,4 @@
 
 ## Afternoon:
 
--  
+-  Installed sniffer at Jakob's apartment and started logging.
