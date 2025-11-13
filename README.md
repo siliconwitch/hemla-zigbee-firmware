@@ -57,3 +57,7 @@ The `.gbl` firmware file can be flashed directly from the gateway hardware.
     ```sh
     python module-bootloader-enable-script.py
     ```
+
+### Debugging
+
+Debugging Zigbee issues can be difficult without a sniffer to monitor the traffic. The [following guide](/tools/sniffer/README.md) describes how to build one using a Raspberry Pi and Nordic nRF52 dongle.
